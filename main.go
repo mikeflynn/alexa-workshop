@@ -17,6 +17,10 @@ var Applications = map[string]interface{}{
 		AppID:   os.Getenv("LIGHTS_APP_ID"),
 		Handler: EchoLights,
 	},
+	"/echo/studio71": alexa.EchoApplication{
+		AppID:   os.Getenv("STUDIO71_APP_ID"),
+		Handler: EchoStudio71,
+	},
 }
 
 func main() {
