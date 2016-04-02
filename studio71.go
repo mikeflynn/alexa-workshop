@@ -36,7 +36,7 @@ func EchoStudio71(w http.ResponseWriter, r *http.Request) {
 
 			message := ""
 			for _, app := range data.Applications {
-				if app.status != "UP" {
+				if app.Status != "UP" {
 					message += fmt.Sprintf("%v is down.", app.Name)
 				}
 			}
@@ -61,10 +61,6 @@ func EchoStudio71(w http.ResponseWriter, r *http.Request) {
 	} else if echoReq.GetRequestType() == "SessionEndedRequest" {
 		// Do nothing.
 	}
-}
-
-func getRandom(list []string) string {
-	return list[rand.Intn(len(list))]
 }
 
 type S71Status struct {
