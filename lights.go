@@ -18,6 +18,8 @@ import (
 func EchoLights(w http.ResponseWriter, r *http.Request) {
 	echoReq := context.Get(r, "echoRequest").(*alexa.EchoRequest)
 
+	log.Println("Request Type: " + echoReq.GetRequestType())
+
 	if echoReq.GetRequestType() == "LaunchRequest" {
 		// Do nothing.
 	} else if echoReq.GetRequestType() == "IntentRequest" {
