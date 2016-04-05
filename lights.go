@@ -15,6 +15,14 @@ import (
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 )
 
+var successMsg []string = []string{
+	"Ok.",
+	"All set!",
+	"Done.",
+	"Boom.",
+	"As you wish.",
+}
+
 func EchoLights(w http.ResponseWriter, r *http.Request) {
 	echoReq := context.Get(r, "echoRequest").(*alexa.EchoRequest)
 
@@ -58,6 +66,8 @@ func EchoLights(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 			}
+
+			echoResp = alexa.NewEchoResponse().OutputSpeech(getRandom(successMsg)).EndSession(true)
 		case "AllOn":
 			for k, v := range lights {
 				if strings.Contains(v.Name, "Workshop") {
@@ -71,6 +81,8 @@ func EchoLights(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 			}
+
+			echoResp = alexa.NewEchoResponse().OutputSpeech(getRandom(successMsg)).EndSession(true)
 		case "AllOff":
 			for k, v := range lights {
 				if strings.Contains(v.Name, "Workshop") {
@@ -84,6 +96,8 @@ func EchoLights(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 			}
+
+			echoResp = alexa.NewEchoResponse().OutputSpeech(getRandom(successMsg)).EndSession(true)
 		case "PercentOn":
 			perStr, _ := echoReq.GetSlotValue("Percent")
 			perInt, _ := strconv.ParseInt(perStr, 10, 8)
@@ -99,6 +113,8 @@ func EchoLights(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 			}
+
+			echoResp = alexa.NewEchoResponse().OutputSpeech(getRandom(successMsg)).EndSession(true)
 		case "MovieMode":
 			config := map[string]interface{}{
 				"front_on":  true,
@@ -108,6 +124,8 @@ func EchoLights(w http.ResponseWriter, r *http.Request) {
 			}
 
 			ToggleWorkshopConfig(config)
+
+			echoResp = alexa.NewEchoResponse().OutputSpeech("Enjoy your movie!").EndSession(true)
 		case "ComputerMode":
 			config := map[string]interface{}{
 				"front_on":  false,
@@ -117,6 +135,8 @@ func EchoLights(w http.ResponseWriter, r *http.Request) {
 			}
 
 			ToggleWorkshopConfig(config)
+
+			echoResp = alexa.NewEchoResponse().OutputSpeech(getRandom(successMsg)).EndSession(true)
 		default:
 			echoResp = alexa.NewEchoResponse().OutputSpeech("I'm sorry, I didn't get that. Can you say that again?").EndSession(false)
 		}
