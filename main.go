@@ -18,8 +18,8 @@ var Applications = map[string]interface{}{
 		Handler: EchoLights,
 	},
 	"/echo/studio71": alexa.EchoApplication{
-		AppID:   os.Getenv("STUDIO71_APP_ID"),
-		Handler: EchoStudio71,
+		AppID:    os.Getenv("STUDIO71_APP_ID"),
+		OnIntent: EchoStudio71,
 	},
 }
 
