@@ -29,8 +29,12 @@ func EchoIntentHandler(echoReq *alexa.EchoRequest, echoResp *alexa.EchoResponse)
 				message += fmt.Sprintf("%v is down.", app.Name)
 			}
 		}
-
-		echoResp.OutputSpeech("All applications are up and running normally.").EndSession(true)
+		
+		if message == "" {
+			message := "All applications are up and running normally."
+		}
+		
+		echoResp.OutputSpeech(message).EndSession(true)
 	default:
 		echoResp.OutputSpeech("I'm sorry, I didn't get that. Can you say that again?").EndSession(false)
 	}
