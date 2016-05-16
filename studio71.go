@@ -31,7 +31,7 @@ func EchoIntentHandler(echoReq *alexa.EchoRequest, echoResp *alexa.EchoResponse)
 		}
 		
 		if message == "" {
-			message := "All applications are up and running normally."
+			message = "All applications are up and running normally."
 		}
 		
 		echoResp.OutputSpeech(message).EndSession(true)
